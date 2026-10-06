@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kestrel Home — Warranty Claim Fraud Review System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">KESTREL HOME</div>
+          <div class="brand-subtitle">Warranty Claim Review System &bull; Pune D2C Operations (Variant C)</div>
+        </div>
+      </div>
+      
+      <div class="header-badges">
+        <div class="kpi-pill">
+          <span class="pill-dot green"></span>
+          <span class="pill-label">Board KPI:</span>
+          <span class="pill-val">99.17% Acc</span>
+        </div>
+        <div class="kpi-pill">
+          <span class="pill-dot blue"></span>
+          <span class="pill-label">Desk Cap:</span>
+          <span class="pill-val">40 claims / mo</span>
+        </div>
+        <div class="kpi-pill">
+          <span class="pill-dot amber"></span>
+          <span class="pill-label">Farhan ROI:</span>
+          <span class="pill-val">+&#8377;558 / claim</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+      <!-- Left Panel: Claim Input & Presets -->
+      <section class="card input-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">Warranty Claim Inspector</h2>
+            <p class="card-description">Score any single warranty claim in real time and inspect human-readable reasons.</p>
+          </div>
+        </div>
+
+        <!-- Quick 1-Click Preset Buttons -->
+        <div class="presets-section">
+          <div class="presets-title">Quick Test Presets:</div>
+          <div class="preset-buttons" id="presetButtons">
+            <button class="preset-btn danger" onclick="loadSample(0)">
+              <span class="preset-icon">&#9888;</span> Sub-&#8377;2k Loophole
+            </button>
+            <button class="preset-btn warning" onclick="loadSample(1)">
+              <span class="preset-icon">&#128260;</span> Serial Recycled
+            </button>
+            <button class="preset-btn info" onclick="loadSample(2)">
+              <span class="preset-icon">&#9878;</span> Franchise Review
+            </button>
+            <button class="preset-btn success" onclick="loadSample(3)">
+              <span class="preset-icon">&#10004;</span> Genuine Claim
+            </button>
+          </div>
+        </div>
+
+        <!-- Claim Input Form -->
+        <form id="claimForm" onsubmit="handleClaimSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="claim_id">Claim ID</label>
+              <input type="text" id="claim_id" name="claim_id" value="WC713056" required>
+            </div>
+            <div class="form-group">
+              <label for="submitted_at">Submitted At (IST)</label>
+              <input type="text" id="submitted_at" name="submitted_at" value="2026-08-15 14:22:00" required>
+            </div>
+            <div class="form-group">
+              <label for="partner_id">Partner ID</label>
+              <input type="text" id="partner_id" name="partner_id" value="SP3160" placeholder="e.g. SP3160" required>
+            </div>
+            <div class="form-group">
+              <label for="sku">Product SKU</label>
+              <select id="sku" name="sku" required>
+                <option value="KH-AF-01">KH-AF-01 &bull; Air Fryer (&#8377;5,199)</option>
+                <option value="KH-AF-02">KH-AF-02 &bull; Air Fryer (&#8377;6,499)</option>
+                <option value="KH-AF-03">KH-AF-03 &bull; Air Fryer (&#8377;8,773)</option>
+                <option value="KH-MG-01">KH-MG-01 &bull; Mixer Grinder (&#8377;3,199)</option>
+                <option value="KH-MG-02">KH-MG-02 &bull; Mixer Grinder (&#8377;4,499)</option>
+                <option value="KH-WP-01">KH-WP-01 &bull; Water Purifier (&#8377;11,999)</option>
+                <option value="KH-WP-02">KH-WP-02 &bull; Water Purifier (&#8377;15,499)</option>
+                <option value="KH-RV-01">KH-RV-01 &bull; Robot Vacuum (&#8377;17,599)</option>
+                <option value="KH-RV-02">KH-RV-02 &bull; Robot Vacuum (&#8377;23,999)</option>
+                <option value="KH-RV-03">KH-RV-03 &bull; Robot Vacuum (&#8377;29,698)</option>
+                <option value="KH-IC-01">KH-IC-01 &bull; Induction Cooktop (&#8377;2,899)</option>
+                <option value="KH-CF-01">KH-CF-01 &bull; Ceiling Fan (&#8377;1,999)</option>
+                <option value="KH-RH-01">KH-RH-01 &bull; Room Heater (&#8377;2,499)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="product_serial">Product Serial</label>
+              <input type="text" id="product_serial" name="product_serial" value="KH896633366" required>
+            </div>
+            <div class="form-group">
+              <label for="claim_amount_inr">Claim Amount (INR)</label>
+              <input type="number" id="claim_amount_inr" name="claim_amount_inr" value="1950" step="1" required>
+            </div>
+            <div class="form-group">
+              <label for="days_since_purchase">Days Since Purchase</label>
+              <input type="number" id="days_since_purchase" name="days_since_purchase" value="140" required>
+            </div>
+            <div class="form-group">
+              <label for="customer_prior_claims">Customer Prior Claims</label>
+              <input type="number" id="customer_prior_claims" name="customer_prior_claims" value="2" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+              <label for="photo_attached">Photo Attached?</label>
+              <select id="photo_attached" name="photo_attached">
+                <option value="Y">Yes (Photo Attached)</option>
+                <option value="N" selected>No (Missing Photo)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="partner_inspected">Partner Inspected?</label>
+              <select id="partner_inspected" name="partner_inspected">
+                <option value="Y">Yes (Inspected)</option>
+                <option value="N" selected>No (Auto-approved / Uninspected)</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="claim_description">Fault Description</label>
+              <input type="text" id="claim_description" name="claim_description" value="unit not heating" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="inspector_note">Inspector Note (optional)</label>
+              <input type="text" id="inspector_note" name="inspector_note" value="" placeholder="Blank if uninspected">
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text">Score Claim with Fraud Engine</span>
+            <span class="btn-icon">&#10140;</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Panel: Live Assessment & Reasons -->
+      <section class="card verdict-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">Live Fraud Assessment</h2>
+            <p class="card-description">Model prediction, decision rule, and operational guidance.</p>
+          </div>
+          <span class="badge" id="claimIdBadge">WC713056</span>
+        </div>
+
+        <div class="verdict-body">
+          <!-- Score Gauge Card -->
+          <div class="score-display">
+            <div class="gauge-container">
+              <svg class="gauge-svg" viewBox="0 0 120 120">
+                <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
+                <circle class="gauge-fill" id="gaugeFill" cx="60" cy="60" r="50" style="stroke-dashoffset: 35;"></circle>
+              </svg>
+              <div class="gauge-value">
+                <span class="gauge-number" id="scoreValue">0.948</span>
+                <span class="gauge-label">RISK SCORE</span>
+              </div>
+            </div>
+
+            <div class="decision-box">
+              <div class="decision-badge high" id="decisionBadge">HOLD &amp; INVESTIGATE</div>
+              <div class="decision-action" id="decisionAction">
+                Forward claim immediately to Farhan's investigation desk before issuing payout.
+              </div>
+            </div>
+          </div>
+
+          <!-- Financial Impact Pills -->
+          <div class="financial-strip">
+            <div class="financial-item">
+              <span class="fin-label">Claim Amount</span>
+              <span class="fin-value" id="finClaimAmt">&#8377;1,950</span>
+            </div>
+            <div class="financial-item">
+              <span class="fin-label">Potential Fraud Stopped</span>
+              <span class="fin-value highlight" id="finExposure">&#8377;1,950</span>
+            </div>
+            <div class="financial-item">
+              <span class="fin-label">Goodwill Cost if Genuine</span>
+              <span class="fin-value" id="finGoodwill">&#8377;380</span>
+            </div>
+          </div>
+
+          <!-- Human-Readable Reasons Feed -->
+          <div class="reasons-container">
+            <div class="reasons-heading">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Reasons for Kestrel Operational Staff:</span>
+            </div>
+            <ul class="reasons-list" id="reasonsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Section: Farhan's Monthly 40-Claim Review Queue -->
+    <section class="card queue-card">
+      <div class="card-header">
+        <div class="card-title-group">
+          <h2 class="card-title">Farhan's Desk Queue &bull; Top 40 Ranked Claims</h2>
+          <p class="card-description">
+            Ranked risk queue for the 40 claims/month review capacity. Click any row to load into the live inspector.
+          </p>
+        </div>
+        <button class="refresh-btn" onclick="fetchTopQueue()">&#8635; Refresh Queue</button>
+      </div>
+
+      <div class="table-container">
+        <table class="queue-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Claim ID</th>
+              <th>Risk Score</th>
+              <th>Partner</th>
+              <th>SKU</th>
+              <th>Clean Serial</th>
+              <th>Amount (&#8377;)</th>
+              <th>Inspect Sign-Off</th>
+              <th>Prior Claims</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="queueTableBody">
+            <tr><td colspan="10" class="loading-cell">Loading queue from predictions.csv...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div>Kestrel Home Appliances D2C Operations &bull; Warranty Fraud Engine v3.0 &bull; Pune, MH</div>
+      <div>Strict SLA: 40 claims / month review desk limit &bull; Evaluated on 12,029 historical records</div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
